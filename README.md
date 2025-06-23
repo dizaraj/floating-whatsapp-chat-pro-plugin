@@ -100,6 +100,14 @@ If you have any questions, require support, or have feedback, please feel free t
 
 ---
 
+### ❤️ Support the Project
+
+This plugin is open-source and free to use. If you find it useful and would like to support its continued development, maintenance, and the creation of more helpful tools, please consider showing your appreciation. Your support is greatly valued!
+
+<a href="https://coff.ee/dizaraj" target="_blank"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
+
+---
+
 ### 📜 License
 
 This plugin is licensed under the **GPL-2.0+**.
