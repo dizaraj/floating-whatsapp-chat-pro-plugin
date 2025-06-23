@@ -70,22 +70,22 @@ This plugin allows you to add a floating WhatsApp chat widget that is highly cus
 *(Here you can add screenshots of the admin panel and the frontend widget.)*
 
 **1. Admin Settings - General**
-<img src="Screenshot 1.jpg" alt="WP Whatsapp Chat Pro Widget General Configuration">
+<div><img src="Screenshot 1.jpg" alt="WP Whatsapp Chat Pro Widget General Configuration"></div>
 
 **2. Admin Settings - Display & Styling**
-<img src="Screenshot 2.jpg" alt="WP Whatsapp Chat Pro Widget Agents Management">
+<div><img src="Screenshot 2.jpg" alt="WP Whatsapp Chat Pro Widget Agents Management"></div>
 
 **3. Admin Settings - Agent Management (Pro)**
-<img src="Screenshot 3.jpg" alt="WP Whatsapp Chat Pro Widget Agents Management">
+<div><img src="Screenshot 3.jpg" alt="WP Whatsapp Chat Pro Widget Agents Management"></div>
 
 **4. Frontend - Floating Widget (Icon Only)**
-<img src="Screenshot 4.jpg" alt="WP Whatsapp Chat Pro Floating Icon Widget Preview">
+<div><img src="Screenshot 4.jpg" alt="WP Whatsapp Chat Pro Floating Icon Widget Preview"></div>
 
 **5. Frontend - Chat Popup with Multiple Agents (Pro)**
-<img src="Screenshot 5.jpg" alt="WP Whatsapp Chat Pro Floating Widget Chat Popup with Multiple Agents Preview">
+<div><img src="Screenshot 5.jpg" alt="WP Whatsapp Chat Pro Floating Widget Chat Popup with Multiple Agents Preview"></div>
 
 **6. Admin - Real Time Preview with Essential Info**
-<img src="Screenshot 6.jpg" alt="WP Whatsapp Chat Pro Floating Widget Real Time Preview with Essential Info Preview">
+<div><img src="Screenshot 6.jpg" alt="WP Whatsapp Chat Pro Floating Widget Real Time Preview with Essential Info Preview"></div>
 
 ---
 
