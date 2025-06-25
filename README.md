@@ -1,6 +1,6 @@
 # Floating WhatsApp Chat Pro Widget for WordPress
 
-![Plugin Version](https://img.shields.io/badge/Version-2.9.3-blue.svg)
+![Plugin Version](https://img.shields.io/badge/Version-2.9.4-blue.svg)
 ![WordPress Version](https://img.shields.io/badge/WordPress-5.0%2B-orange.svg)
 ![PHP Version](https://img.shields.io/badge/PHP-7.2%2B-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-GPL--2.0%2B-red.svg)
