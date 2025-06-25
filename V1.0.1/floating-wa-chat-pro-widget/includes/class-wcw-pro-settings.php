@@ -247,10 +247,10 @@ class WCW_Pro_Settings
 
         switch ($type) {
             case 'text':
-                echo "<input type='text' id='{$id}' name='wcw_pro_settings[{$id}]' value='" . esc_attr($value) . "' class='regular-text' placeholder='" . esc_attr($placeholder) . "'>";
+                echo '<input type="text" id="' . esc_attr($id) . '" name="wcw_pro_settings[' . esc_attr($id) . ']" value="' . esc_attr($value) . '" class="regular-text" placeholder="' . esc_attr($placeholder) . '">';
                 break;
             case 'color':
-                echo "<input type='text' id='{$id}' name='wcw_pro_settings[{$id}]' value='" . esc_attr($value) . "' class='wcw-pro-color-picker'>";
+                echo '<input type="text" id="' . esc_attr($id) . '" name="wcw_pro_settings[' . esc_attr($id) . ']" value="' . esc_attr($value) . '" class="wcw-pro-color-picker">';
                 break;
         }
 
@@ -326,7 +326,7 @@ class WCW_Pro_Settings
                                         </div>
                                         <div class="wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                 echo 'wcw-pro-locked'; ?>">
-                                            <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<?php echo $index; ?>][image_id]" value="<?php echo esc_attr($image_id); ?>">
+                                            <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][image_id]" value="<?php echo esc_attr($image_id); ?>">
                                             <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'floating-wa-chat-pro-widget'); ?></button>
                                             <button type="button" class="button button-link wcw-pro-remove-image-button" style="<?php echo $image_id ? '' : 'display:none;'; ?>"><?php esc_html_e('Remove', 'floating-wa-chat-pro-widget'); ?></button>
                                             <?php if (!$is_pro)
@@ -337,29 +337,29 @@ class WCW_Pro_Settings
                                         <div class="wcw-pro-form-row">
                                             <div class="wcw-pro-form-group">
                                                 <label><?php esc_html_e('Agent Name', 'floating-wa-chat-pro-widget'); ?></label>
-                                                <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<?php echo $index; ?>][name]" type="text" value="<?php echo esc_attr($agent['name']); ?>" placeholder="e.g. John Doe">
+                                                <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][name]" type="text" value="<?php echo esc_attr($agent['name']); ?>" placeholder="e.g. John Doe">
                                             </div>
                                             <div class="wcw-pro-form-group">
                                                 <label><?php esc_html_e('Agent Title/Role', 'floating-wa-chat-pro-widget'); ?></label>
-                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][title]" type="text" value="<?php echo esc_attr($agent['title']); ?>" placeholder="e.g. Sales Manager">
+                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][title]" type="text" value="<?php echo esc_attr($agent['title']); ?>" placeholder="e.g. Sales Manager">
                                             </div>
                                         </div>
                                         <div class="wcw-pro-form-row">
                                             <div class="wcw-pro-form-group">
                                                 <label><?php esc_html_e('WhatsApp Number', 'floating-wa-chat-pro-widget'); ?></label>
-                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][phone]" type="text" value="<?php echo esc_attr($agent['phone']); ?>" placeholder="e.g. +1234567890">
+                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][phone]" type="text" value="<?php echo esc_attr($agent['phone']); ?>" placeholder="e.g. +1234567890">
                                             </div>
                                             <div class="wcw-pro-form-group wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                                     echo 'wcw-pro-locked'; ?>">
                                                 <label><?php esc_html_e('Department', 'floating-wa-chat-pro-widget'); ?></label>
-                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][department]" type="text" value="<?php echo esc_attr($agent['department'] ?? ''); ?>" placeholder="e.g. Support" <?php disabled(!$is_pro); ?>>
+                                                <input class="widefat" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][department]" type="text" value="<?php echo esc_attr($agent['department'] ?? ''); ?>" placeholder="e.g. Support" <?php disabled(!$is_pro); ?>>
                                                 <?php if (!$is_pro)
                                                     echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                                             </div>
                                         </div>
                                         <div class="wcw-pro-form-group">
                                             <label><?php esc_html_e('Prefilled Message', 'floating-wa-chat-pro-widget'); ?></label>
-                                            <textarea class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."><?php echo esc_textarea($agent['message']); ?></textarea>
+                                            <textarea class="widefat" name="wcw_pro_settings[agents][<?php echo esc_attr($index); ?>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."><?php echo esc_textarea($agent['message']); ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -388,7 +388,13 @@ class WCW_Pro_Settings
                     <div class="wcw-pro-agent-grid">
                         <div class="wcw-pro-agent-avatar-section">
                             <div class="wcw-pro-image-preview">
-                                 <img src="https://placehold.co/100x100/EFEFEF/AAAAAA&text=Avatar">
+                                <?php
+                                // Use wp_get_attachment_image if image_id is set, otherwise show placeholder
+                                echo wp_get_attachment_image( 0, 'thumbnail', false, array(
+                                    'src' => 'https://placehold.co/100x100/EFEFEF/AAAAAA&text=Avatar',
+                                    'alt' => esc_attr__('Avatar', 'floating-wa-chat-pro-widget')
+                                ) );
+                                ?>
                             </div>
                              <div class="wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                     echo 'wcw-pro-locked'; ?>">
@@ -448,7 +454,7 @@ class WCW_Pro_Settings
         if ($status === 'valid') {
             echo '<p class="status-valid"><strong>Active:</strong> Pro License</p>';
         } else if ($status === 'valid_trial' && time() < $expires) {
-            echo '<p class="status-trial"><strong>Active:</strong> Trial License (Expires on: ' . date_i18n(get_option('date_format'), $expires) . ')</p>';
+            echo '<p class="status-trial"><strong>Active:</strong> Trial License (Expires on: ' . esc_html(date_i18n(get_option('date_format'), $expires)) . ')</p>';
         } else if ($status === 'expired') {
             echo '<p class="status-expired"><strong>Expired:</strong> Your license/trial has ended.</p>';
         } else {
