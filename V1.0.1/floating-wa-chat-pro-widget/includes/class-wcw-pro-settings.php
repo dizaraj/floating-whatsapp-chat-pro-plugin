@@ -171,7 +171,7 @@ class WCW_Pro_Settings
                             $data = json_decode($body, true);
 
                             if (json_last_error() !== JSON_ERROR_NONE) {
-                                $json_text = strip_tags($body);
+                                $json_text = wp_strip_all_tags($body);
                                 if (!empty($json_text)) {
                                     $data = json_decode(trim($json_text), true);
                                 }
@@ -392,7 +392,7 @@ class WCW_Pro_Settings
                             </div>
                              <div class="wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                     echo 'wcw-pro-locked'; ?>">
-                                <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<%= index %>][image_id]" value="0">
+                                <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<#= index #>][image_id]" value="0">
                                 <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'floating-wa-chat-pro-widget'); ?></button>
                                 <button type="button" class="button button-link wcw-pro-remove-image-button" style="display:none;"><?php esc_html_e('Remove', 'floating-wa-chat-pro-widget'); ?></button>
                                 <?php if (!$is_pro)
@@ -403,29 +403,29 @@ class WCW_Pro_Settings
                             <div class="wcw-pro-form-row">
                                 <div class="wcw-pro-form-group">
                                     <label><?php esc_html_e('Agent Name', 'floating-wa-chat-pro-widget'); ?></label>
-                                    <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<%= index %>][name]" type="text" value="" placeholder="e.g. Jane Doe">
+                                    <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<#= index #>][name]" type="text" value="" placeholder="e.g. Jane Doe">
                                 </div>
                                 <div class="wcw-pro-form-group">
                                     <label><?php esc_html_e('Agent Title/Role', 'floating-wa-chat-pro-widget'); ?></label>
-                                    <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][title]" type="text" value="" placeholder="e.g. Customer Support">
+                                    <input class="widefat" name="wcw_pro_settings[agents][<#= index #>][title]" type="text" value="" placeholder="e.g. Customer Support">
                                 </div>
                             </div>
                             <div class="wcw-pro-form-row">
                                  <div class="wcw-pro-form-group">
                                     <label><?php esc_html_e('WhatsApp Number', 'floating-wa-chat-pro-widget'); ?></label>
-                                    <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][phone]" type="text" value="" placeholder="e.g. +1234567890">
+                                    <input class="widefat" name="wcw_pro_settings[agents][<#= index #>][phone]" type="text" value="" placeholder="e.g. +1234567890">
                                 </div>
                                 <div class="wcw-pro-form-group wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                         echo 'wcw-pro-locked'; ?>">
                                     <label><?php esc_html_e('Department', 'floating-wa-chat-pro-widget'); ?></label>
-                                    <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][department]" type="text" value="" placeholder="e.g. Sales" <?php disabled(!$is_pro); ?>>
+                                    <input class="widefat" name="wcw_pro_settings[agents][<#= index #>][department]" type="text" value="" placeholder="e.g. Sales" <?php disabled(!$is_pro); ?>>
                                     <?php if (!$is_pro)
                                         echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                                 </div>
                             </div>
                              <div class="wcw-pro-form-group">
                                 <label><?php esc_html_e('Prefilled Message', 'floating-wa-chat-pro-widget'); ?></label>
-                                <textarea class="widefat" name="wcw_pro_settings[agents][<%= index %>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."></textarea>
+                                <textarea class="widefat" name="wcw_pro_settings[agents][<#= index #>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."></textarea>
                             </div>
                         </div>
                     </div>
