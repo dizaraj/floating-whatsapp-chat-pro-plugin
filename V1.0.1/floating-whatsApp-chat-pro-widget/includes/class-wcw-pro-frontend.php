@@ -11,7 +11,6 @@ class WCW_Pro_Frontend
     {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
         add_action('wp_head', array($this, 'output_dynamic_styles'));
-        add_action('wp_head', array($this, 'add_google_tag'));
         add_action('wp_footer', array($this, 'render_frontend_widget'));
     }
 
