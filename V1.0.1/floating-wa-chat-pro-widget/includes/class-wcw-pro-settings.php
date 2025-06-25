@@ -27,9 +27,9 @@ class WCW_Pro_Settings
 
         // License Section
         add_settings_section('wcw_pro_license_section', 'License & Activation', '__return_false', 'wcw_pro_settings_license');
-        add_settings_field('wcw_pro_api_key_status_field', esc_html__('License Status', 'wcw-pro'), array($this, 'api_key_status_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
-        add_settings_field('wcw_pro_api_key_field', esc_html__('License Key', 'wcw-pro'), array($this, 'api_key_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
-        add_settings_field('wcw_pro_trial_request_field', esc_html__('Request a Trial Key', 'wcw-pro'), array($this, 'trial_request_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
+        add_settings_field('wcw_pro_api_key_status_field', esc_html__('License Status', 'floating-wa-chat-pro-widget'), array($this, 'api_key_status_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
+        add_settings_field('wcw_pro_api_key_field', esc_html__('License Key', 'floating-wa-chat-pro-widget'), array($this, 'api_key_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
+        add_settings_field('wcw_pro_trial_request_field', esc_html__('Request a Trial Key', 'floating-wa-chat-pro-widget'), array($this, 'trial_request_field_callback'), 'wcw_pro_settings_license', 'wcw_pro_license_section');
     }
 
     public function general_settings_fields_callback()
@@ -42,12 +42,12 @@ class WCW_Pro_Settings
                 </div>
                 <div class="wcw-pro-card-body">
                     <div class="wcw-pro-form-group">
-                        <label for="popup_title"><?php esc_html_e('Popup Title', 'wcw-pro'); ?></label>
+                        <label for="popup_title"><?php esc_html_e('Popup Title', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->render_field(['type' => 'text', 'id' => 'popup_title', 'default' => 'Start a Conversation', 'placeholder' => 'Start a Conversation']); ?>
                         <p class='description'>The title displayed at the top of the chat popup.</p>
                     </div>
                     <div class="wcw-pro-form-group">
-                        <label><?php esc_html_e('Button Position', 'wcw-pro'); ?></label>
+                        <label><?php esc_html_e('Button Position', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->button_position_field_callback(); ?>
                         <p class='description'>Choose where the floating button appears on your site.</p>
                     </div>
@@ -67,11 +67,11 @@ class WCW_Pro_Settings
                 </div>
                 <div class="wcw-pro-card-body">
                     <div class="wcw-pro-form-group">
-                        <label for="bubble_color"><?php esc_html_e('Bubble Background Color', 'wcw-pro'); ?></label>
+                        <label for="bubble_color"><?php esc_html_e('Bubble Background Color', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->render_field(['type' => 'color', 'id' => 'bubble_color', 'default' => '#25D366']); ?>
                     </div>
                     <div class="wcw-pro-form-group">
-                        <label for="icon_color"><?php esc_html_e('Icon & Text Color', 'wcw-pro'); ?></label>
+                        <label for="icon_color"><?php esc_html_e('Icon & Text Color', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->render_field(['type' => 'color', 'id' => 'icon_color', 'default' => '#FFFFFF']); ?>
                     </div>
                 </div>
@@ -82,11 +82,11 @@ class WCW_Pro_Settings
                 </div>
                 <div class="wcw-pro-card-body">
                     <div class="wcw-pro-form-group">
-                        <label><?php esc_html_e('Button Style', 'wcw-pro'); ?></label>
+                        <label><?php esc_html_e('Button Style', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->button_style_field_callback(); ?>
                     </div>
                     <div class="wcw-pro-form-group" id="button_text_field_group" style="display:none;">
-                        <label for="button_text"><?php esc_html_e('Button Text', 'wcw-pro'); ?></label>
+                        <label for="button_text"><?php esc_html_e('Button Text', 'floating-wa-chat-pro-widget'); ?></label>
                         <?php $this->render_field(['type' => 'text', 'id' => 'button_text', 'default' => 'Need Help!', 'placeholder' => 'Need Help!']); ?>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ class WCW_Pro_Settings
         $new_input['bubble_color'] = isset($input['bubble_color']) ? sanitize_hex_color($input['bubble_color']) : '#25D366';
         $new_input['icon_color'] = isset($input['icon_color']) ? sanitize_hex_color($input['icon_color']) : '#FFFFFF';
         $new_input['button_style'] = isset($input['button_style']) ? sanitize_text_field($input['button_style']) : 'icon_only';
-        $new_input['button_text'] = isset($input['button_text']) ? sanitize_text_field($input['button_text']) : esc_html__('Need Help!', 'wcw-pro');
+        $new_input['button_text'] = isset($input['button_text']) ? sanitize_text_field($input['button_text']) : esc_html__('Need Help!', 'floating-wa-chat-pro-widget');
 
         if (isset($input['api_key'])) {
             $submitted_key = sanitize_text_field($input['api_key']);
@@ -267,11 +267,11 @@ class WCW_Pro_Settings
         <fieldset>
             <label class="wcw-pro-radio-label">
                 <input type="radio" name="wcw_pro_settings[button_style]" value="icon_only" <?php checked($style, 'icon_only'); ?>>
-                <span><?php esc_html_e('Icon Only', 'wcw-pro'); ?></span>
+                <span><?php esc_html_e('Icon Only', 'floating-wa-chat-pro-widget'); ?></span>
             </label>
             <label class="wcw-pro-radio-label">
                 <input type="radio" name="wcw_pro_settings[button_style]" value="icon_text" <?php checked($style, 'icon_text'); ?>>
-                <span><?php esc_html_e('Icon with Text', 'wcw-pro'); ?></span>
+                <span><?php esc_html_e('Icon with Text', 'floating-wa-chat-pro-widget'); ?></span>
             </label>
         </fieldset>
     <?php
@@ -285,11 +285,11 @@ class WCW_Pro_Settings
         <fieldset>
             <label class="wcw-pro-radio-label">
                 <input type="radio" name="wcw_pro_settings[button_position]" value="bottom_right" <?php checked($position, 'bottom_right'); ?>>
-                <span><?php esc_html_e('Bottom Right', 'wcw-pro'); ?></span>
+                <span><?php esc_html_e('Bottom Right', 'floating-wa-chat-pro-widget'); ?></span>
             </label>
             <label class="wcw-pro-radio-label">
                 <input type="radio" name="wcw_pro_settings[button_position]" value="bottom_left" <?php checked($position, 'bottom_left'); ?>>
-                <span><?php esc_html_e('Bottom Left', 'wcw-pro'); ?></span>
+                <span><?php esc_html_e('Bottom Left', 'floating-wa-chat-pro-widget'); ?></span>
             </label>
         </fieldset>
     <?php
@@ -302,7 +302,7 @@ class WCW_Pro_Settings
         $is_pro = wcw_pro_is_pro();
     ?>
         <p class="description" style="margin-bottom: 20px;">
-            <?php esc_html_e('Add and manage your support agents here. Click the agent name to expand/collapse.', 'wcw-pro'); ?>
+            <?php esc_html_e('Add and manage your support agents here. Click the agent name to expand/collapse.', 'floating-wa-chat-pro-widget'); ?>
         </p>
         <div class="wcw-pro-repeater-container">
             <div id="wcw-pro-repeater" class="wcw-pro-accordion">
@@ -322,13 +322,19 @@ class WCW_Pro_Settings
                                 <div class="wcw-pro-agent-grid">
                                     <div class="wcw-pro-agent-avatar-section">
                                         <div class="wcw-pro-image-preview">
-                                            <img src="<?php echo esc_url($image_url); ?>">
+                                            <?php
+                                            if ($image_id) {
+                                                echo wp_get_attachment_image($image_id, 'thumbnail', false, ['class' => 'wcw-pro-agent-avatar']);
+                                            } else {
+                                                echo '<img src="' . esc_url($image_url) . '" class="wcw-pro-agent-avatar">';
+                                            }
+                                            ?>
                                         </div>
                                         <div class="wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                 echo 'wcw-pro-locked'; ?>">
                                             <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<?php echo $index; ?>][image_id]" value="<?php echo esc_attr($image_id); ?>">
-                                            <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'wcw-pro'); ?></button>
-                                            <button type="button" class="button button-link wcw-pro-remove-image-button" style="<?php echo $image_id ? '' : 'display:none;'; ?>"><?php esc_html_e('Remove', 'wcw-pro'); ?></button>
+                                            <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'floating-wa-chat-pro-widget'); ?></button>
+                                            <button type="button" class="button button-link wcw-pro-remove-image-button" style="<?php echo $image_id ? '' : 'display:none;'; ?>"><?php esc_html_e('Remove', 'floating-wa-chat-pro-widget'); ?></button>
                                             <?php if (!$is_pro)
                                                 echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                                         </div>
@@ -336,35 +342,35 @@ class WCW_Pro_Settings
                                     <div class="wcw-pro-agent-details-section">
                                         <div class="wcw-pro-form-row">
                                             <div class="wcw-pro-form-group">
-                                                <label><?php esc_html_e('Agent Name', 'wcw-pro'); ?></label>
+                                                <label><?php esc_html_e('Agent Name', 'floating-wa-chat-pro-widget'); ?></label>
                                                 <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<?php echo $index; ?>][name]" type="text" value="<?php echo esc_attr($agent['name']); ?>" placeholder="e.g. John Doe">
                                             </div>
                                             <div class="wcw-pro-form-group">
-                                                <label><?php esc_html_e('Agent Title/Role', 'wcw-pro'); ?></label>
+                                                <label><?php esc_html_e('Agent Title/Role', 'floating-wa-chat-pro-widget'); ?></label>
                                                 <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][title]" type="text" value="<?php echo esc_attr($agent['title']); ?>" placeholder="e.g. Sales Manager">
                                             </div>
                                         </div>
                                         <div class="wcw-pro-form-row">
                                             <div class="wcw-pro-form-group">
-                                                <label><?php esc_html_e('WhatsApp Number', 'wcw-pro'); ?></label>
+                                                <label><?php esc_html_e('WhatsApp Number', 'floating-wa-chat-pro-widget'); ?></label>
                                                 <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][phone]" type="text" value="<?php echo esc_attr($agent['phone']); ?>" placeholder="e.g. +1234567890">
                                             </div>
                                             <div class="wcw-pro-form-group wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                                     echo 'wcw-pro-locked'; ?>">
-                                                <label><?php esc_html_e('Department', 'wcw-pro'); ?></label>
+                                                <label><?php esc_html_e('Department', 'floating-wa-chat-pro-widget'); ?></label>
                                                 <input class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][department]" type="text" value="<?php echo esc_attr($agent['department'] ?? ''); ?>" placeholder="e.g. Support" <?php disabled(!$is_pro); ?>>
                                                 <?php if (!$is_pro)
                                                     echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                                             </div>
                                         </div>
                                         <div class="wcw-pro-form-group">
-                                            <label><?php esc_html_e('Prefilled Message', 'wcw-pro'); ?></label>
+                                            <label><?php esc_html_e('Prefilled Message', 'floating-wa-chat-pro-widget'); ?></label>
                                             <textarea class="widefat" name="wcw_pro_settings[agents][<?php echo $index; ?>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."><?php echo esc_textarea($agent['message']); ?></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wcw-pro-repeater-footer">
-                                    <a href="#" class="button button-link-delete wcw-pro-remove-agent"><span class="dashicons dashicons-trash"></span><?php esc_html_e('Remove Agent', 'wcw-pro'); ?></a>
+                                    <a href="#" class="button button-link-delete wcw-pro-remove-agent"><span class="dashicons dashicons-trash"></span><?php esc_html_e('Remove Agent', 'floating-wa-chat-pro-widget'); ?></a>
                                 </div>
                             </div>
                         </div>
@@ -373,7 +379,7 @@ class WCW_Pro_Settings
             </div>
             <div class="wcw-pro-add-agent-wrapper <?php if (!$is_pro && count($agents) >= 1)
                                                         echo 'wcw-pro-locked'; ?>" style="margin-top: 20px;">
-                <a href="#" id="wcw-pro-add-agent" class="button button-primary button-large"><span class="dashicons dashicons-plus-alt"></span><?php esc_html_e('Add New Agent', 'wcw-pro'); ?></a>
+                <a href="#" id="wcw-pro-add-agent" class="button button-primary button-large"><span class="dashicons dashicons-plus-alt"></span><?php esc_html_e('Add New Agent', 'floating-wa-chat-pro-widget'); ?></a>
                 <?php if (!$is_pro && count($agents) >= 1)
                     echo '<span class="wcw-pro-badge">PRO feature: Add more than one agent</span>'; ?>
             </div>
@@ -381,7 +387,7 @@ class WCW_Pro_Settings
         <script type="text/template" id="tmpl-wcw-pro-repeater-template">
             <div class="wcw-pro-repeater-item">
                 <div class="wcw-pro-repeater-handle">
-                    <h3><span class="dashicons dashicons-admin-users"></span><?php esc_html_e('New Agent', 'wcw-pro'); ?></h3>
+                    <h3><span class="dashicons dashicons-admin-users"></span><?php esc_html_e('New Agent', 'floating-wa-chat-pro-widget'); ?></h3>
                     <span class="wcw-pro-handle-arrow dashicons dashicons-arrow-down-alt2"></span>
                 </div>
                 <div class="wcw-pro-repeater-content">
@@ -393,8 +399,8 @@ class WCW_Pro_Settings
                              <div class="wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                     echo 'wcw-pro-locked'; ?>">
                                 <input type="hidden" class="wcw-pro-image-id" name="wcw_pro_settings[agents][<%= index %>][image_id]" value="0">
-                                <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'wcw-pro'); ?></button>
-                                <button type="button" class="button button-link wcw-pro-remove-image-button" style="display:none;"><?php esc_html_e('Remove', 'wcw-pro'); ?></button>
+                                <button type="button" class="button wcw-pro-upload-image-button" <?php disabled(!$is_pro); ?>><?php esc_html_e('Upload Image', 'floating-wa-chat-pro-widget'); ?></button>
+                                <button type="button" class="button button-link wcw-pro-remove-image-button" style="display:none;"><?php esc_html_e('Remove', 'floating-wa-chat-pro-widget'); ?></button>
                                 <?php if (!$is_pro)
                                     echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                             </div>
@@ -402,35 +408,35 @@ class WCW_Pro_Settings
                         <div class="wcw-pro-agent-details-section">
                             <div class="wcw-pro-form-row">
                                 <div class="wcw-pro-form-group">
-                                    <label><?php esc_html_e('Agent Name', 'wcw-pro'); ?></label>
+                                    <label><?php esc_html_e('Agent Name', 'floating-wa-chat-pro-widget'); ?></label>
                                     <input class="widefat agent-name-field" name="wcw_pro_settings[agents][<%= index %>][name]" type="text" value="" placeholder="e.g. Jane Doe">
                                 </div>
                                 <div class="wcw-pro-form-group">
-                                    <label><?php esc_html_e('Agent Title/Role', 'wcw-pro'); ?></label>
+                                    <label><?php esc_html_e('Agent Title/Role', 'floating-wa-chat-pro-widget'); ?></label>
                                     <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][title]" type="text" value="" placeholder="e.g. Customer Support">
                                 </div>
                             </div>
                             <div class="wcw-pro-form-row">
                                  <div class="wcw-pro-form-group">
-                                    <label><?php esc_html_e('WhatsApp Number', 'wcw-pro'); ?></label>
+                                    <label><?php esc_html_e('WhatsApp Number', 'floating-wa-chat-pro-widget'); ?></label>
                                     <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][phone]" type="text" value="" placeholder="e.g. +1234567890">
                                 </div>
                                 <div class="wcw-pro-form-group wcw-pro-field-wrapper <?php if (!$is_pro)
                                                                                         echo 'wcw-pro-locked'; ?>">
-                                    <label><?php esc_html_e('Department', 'wcw-pro'); ?></label>
+                                    <label><?php esc_html_e('Department', 'floating-wa-chat-pro-widget'); ?></label>
                                     <input class="widefat" name="wcw_pro_settings[agents][<%= index %>][department]" type="text" value="" placeholder="e.g. Sales" <?php disabled(!$is_pro); ?>>
                                     <?php if (!$is_pro)
                                         echo '<span class="wcw-pro-badge">PRO</span>'; ?>
                                 </div>
                             </div>
                              <div class="wcw-pro-form-group">
-                                <label><?php esc_html_e('Prefilled Message', 'wcw-pro'); ?></label>
+                                <label><?php esc_html_e('Prefilled Message', 'floating-wa-chat-pro-widget'); ?></label>
                                 <textarea class="widefat" name="wcw_pro_settings[agents][<%= index %>][message]" rows="3" placeholder="e.g. Hello! I have a question about..."></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="wcw-pro-repeater-footer">
-                        <a href="#" class="button button-link-delete wcw-pro-remove-agent"><span class="dashicons dashicons-trash"></span><?php esc_html_e('Remove Agent', 'wcw-pro'); ?></a>
+                        <a href="#" class="button button-link-delete wcw-pro-remove-agent"><span class="dashicons dashicons-trash"></span><?php esc_html_e('Remove Agent', 'floating-wa-chat-pro-widget'); ?></a>
                     </div>
                 </div>
             </div>
@@ -473,7 +479,7 @@ class WCW_Pro_Settings
 
         echo '<div class="wcw-pro-license-input-wrapper">';
         echo "<input type='text' id='api_key' name='wcw_pro_settings[api_key]' value='" . esc_attr($display_value) . "' class='regular-text' autocomplete='off'>";
-        echo '<a href="https://whatsapp-pro-chat.web.app/" target="_blank" class="button wcw-pro-get-license-btn">' . esc_html__('Get Pro License', 'wcw-pro') . '</a>';
+        echo '<a href="https://whatsapp-pro-chat.web.app/" target="_blank" class="button wcw-pro-get-license-btn">' . esc_html__('Get Pro License', 'floating-wa-chat-pro-widget') . '</a>';
         echo '</div>';
         echo "<p class='description'>Enter your License key to unlock Pro features.</p>";
     }
@@ -482,7 +488,7 @@ class WCW_Pro_Settings
     {
     ?>
         <p class="description">
-            <?php esc_html_e('Enter your email to receive a 7-day trial key for Pro features.', 'wcw-pro'); ?></p>
+            <?php esc_html_e('Enter your email to receive a 7-day trial key for Pro features.', 'floating-wa-chat-pro-widget'); ?></p>
         <div id="wcw-pro-trial-form">
             <input type="email" id="wcw-pro-trial-email" placeholder="your-email@example.com" class="regular-text">
             <button type="button" id="wcw-pro-request-trial-btn" class="button button-secondary">Request Trial Key</button>

@@ -1,16 +1,16 @@
 <?php
 /*
-Plugin Name: Floating WhatsApp Chat Pro Widget
-Plugin URI: dizaraj.github.io/floating-whatsapp-chat-pro-plugin
+Plugin Name: Floating WA Chat Pro Widget
+Plugin URI: https://dizaraj.github.io/floating-whatsapp-chat-pro-plugin
 Description: Add a customizable floating WhatsApp chat widget to your WordPress site. Engage visitors, manage multiple agents, and provide instant support to boost sales.
 Version: 1.0.1
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Dizaraj Dey
-Author URI: dizaraj.github.io
+Author URI: https://dizaraj.github.io
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-Text Domain: wcw-pro
+Text Domain: floating-wa-chat-pro-widget
 */
 
 // Exit if accessed directly.
@@ -77,12 +77,12 @@ function wcw_pro_activate()
     // Set default options if they don't exist.
     if (false === get_option('wcw_pro_settings')) {
         $defaults = [
-            'popup_title' => esc_html__('Start a Conversation', 'wcw-pro'),
+            'popup_title' => esc_html__('Start a Conversation', 'floating-wa-chat-pro-widget'),
             'button_position' => 'bottom_right',
             'bubble_color' => '#25D366',
             'icon_color' => '#FFFFFF',
             'button_style' => 'icon_only',
-            'button_text' => esc_html__('Need Help!', 'wcw-pro'),
+            'button_text' => esc_html__('Need Help!', 'floating-wa-chat-pro-widget'),
             'api_key' => '',
             'api_key_status' => 'invalid',
             'api_key_expires' => 0,

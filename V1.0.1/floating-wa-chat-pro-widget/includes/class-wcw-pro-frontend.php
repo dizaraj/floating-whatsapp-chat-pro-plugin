@@ -50,10 +50,10 @@ class WCW_Pro_Frontend
     public function render_frontend_widget()
     {
         $options = get_option('wcw_pro_settings', []);
-        $title = $options['popup_title'] ?? esc_html__('Start a Conversation', 'wcw-pro');
+        $title = $options['popup_title'] ?? esc_html__('Start a Conversation', 'floating-wa-chat-pro-widget');
         $agents = $options['agents'] ?? [];
         $button_style = $options['button_style'] ?? 'icon_only';
-        $button_text = $options['button_text'] ?? esc_html__('Need Help!', 'wcw-pro');
+        $button_text = $options['button_text'] ?? esc_html__('Need Help!', 'floating-wa-chat-pro-widget');
         $is_pro = wcw_pro_is_pro();
 
         if (empty($agents)) {
@@ -94,7 +94,7 @@ class WCW_Pro_Frontend
                         $image_id = ($is_pro && isset($agent['image_id'])) ? $agent['image_id'] : 0;
                         $image_url = $image_id ? wp_get_attachment_image_url($image_id, [50, 50]) : 'https://placehold.co/50x50/EFEFEF/AAAAAA&text=Avatar';
                         $phone_number = preg_replace('/\D/', '', $agent_phone);
-                        $prefilled_message = !empty($agent_message) ? $agent_message : sprintf(esc_html__('Hello %s!', 'wcw-pro'), $agent_name);
+                        $prefilled_message = !empty($agent_message) ? $agent_message : sprintf(esc_html__('Hello %s, I would like to chat with you.', 'floating-wa-chat-pro-widget'), $agent_name);
                         $whatsapp_url = 'https://wa.me/' . esc_attr($phone_number) . '?text=' . urlencode($prefilled_message);
                         $display_title = $agent_title;
                         if (!empty($agent_department))

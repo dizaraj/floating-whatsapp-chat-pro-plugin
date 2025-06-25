@@ -17,8 +17,8 @@ class WCW_Pro_Admin
     public function add_admin_menu()
     {
         add_menu_page(
-            esc_html__('WhatsApp Chat Settings', 'wcw-pro'),
-            esc_html__('WhatsApp Chat', 'wcw-pro'),
+            esc_html__('WhatsApp Chat Settings', 'floating-wa-chat-pro-widget'),
+            esc_html__('WhatsApp Chat', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro',
             array($this, 'settings_page_html'),
@@ -28,8 +28,8 @@ class WCW_Pro_Admin
 
         add_submenu_page(
             'wcw-pro',
-            esc_html__('WhatsApp Chat Settings', 'wcw-pro'),
-            esc_html__('Settings', 'wcw-pro'),
+            esc_html__('WhatsApp Chat Settings', 'floating-wa-chat-pro-widget'),
+            esc_html__('Settings', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro',
             array($this, 'settings_page_html')
@@ -37,8 +37,8 @@ class WCW_Pro_Admin
 
         add_submenu_page(
             'wcw-pro',
-            esc_html__('Activate Pro License', 'wcw-pro'),
-            esc_html__('Activate Pro', 'wcw-pro'),
+            esc_html__('Activate Pro License', 'floating-wa-chat-pro-widget'),
+            esc_html__('Activate Pro', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro-activate',
             array($this, 'activate_page_html')
@@ -46,8 +46,8 @@ class WCW_Pro_Admin
 
         add_submenu_page(
             'wcw-pro',
-            esc_html__('About WhatsApp Chat Pro', 'wcw-pro'),
-            esc_html__('About', 'wcw-pro'),
+            esc_html__('About WhatsApp Chat Pro', 'floating-wa-chat-pro-widget'),
+            esc_html__('About', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro-about',
             array($this, 'about_page_html')
@@ -103,7 +103,7 @@ class WCW_Pro_Admin
                 </div>
                 <div class="wcw-pro-settings-sidebar">
                     <div class="wcw-pro-sidebar-box">
-                        <h3><?php esc_html_e('Live Preview', 'wcw-pro'); ?></h3>
+                        <h3><?php esc_html_e('Live Preview', 'floating-wa-chat-pro-widget'); ?></h3>
                         <div id="wcw-pro-preview-container">
                             <div id="wcw-pro-preview-bubble">
                                 <svg id="wcw-pro-preview-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30">
@@ -115,23 +115,23 @@ class WCW_Pro_Admin
                     </div>
                     <div class="wcw-pro-sidebar-box">
                         <h3><span class="dashicons dashicons-info-outline"></span>
-                            <?php esc_html_e('Essential Info', 'wcw-pro'); ?></h3>
+                            <?php esc_html_e('Essential Info', 'floating-wa-chat-pro-widget'); ?></h3>
                         <div class="wcw-pro-essential-info">
                             <?php $info = wcw_pro_get_essential_info(); ?>
                             <ul>
-                                <li><strong><?php esc_html_e('Domain:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Domain:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['domain']); ?></span></li>
-                                <li><strong><?php esc_html_e('Server IP:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Server IP:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['server_ip']); ?></span></li>
-                                <li><strong><?php esc_html_e('Your Public IP:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Your Public IP:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['your_public_ip']); ?></span></li>
-                                <li><strong><?php esc_html_e('PHP Version:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('PHP Version:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['php_version']); ?></span></li>
-                                <li><strong><?php esc_html_e('WordPress Version:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('WordPress Version:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['wp_version']); ?></span></li>
-                                <li><strong><?php esc_html_e('Memory Limit:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Memory Limit:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['memory_limit']); ?></span></li>
-                                <li><strong><?php esc_html_e('Memory Usage:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Memory Usage:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['memory_usage']); ?></span></li>
                             </ul>
                         </div>
@@ -245,23 +245,23 @@ class WCW_Pro_Admin
                 <div class="wcw-pro-settings-sidebar">
                     <div class="wcw-pro-sidebar-box">
                         <h3><span class="dashicons dashicons-info-outline"></span>
-                            <?php esc_html_e('Essential Info', 'wcw-pro'); ?></h3>
+                            <?php esc_html_e('Essential Info', 'floating-wa-chat-pro-widget'); ?></h3>
                         <div class="wcw-pro-essential-info">
                             <?php $info = wcw_pro_get_essential_info(); ?>
                             <ul>
-                                <li><strong><?php esc_html_e('Domain:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Domain:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['domain']); ?></span></li>
-                                <li><strong><?php esc_html_e('Server IP:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Server IP:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['server_ip']); ?></span></li>
-                                <li><strong><?php esc_html_e('Your Public IP:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Your Public IP:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['your_public_ip']); ?></span></li>
-                                <li><strong><?php esc_html_e('PHP Version:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('PHP Version:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['php_version']); ?></span></li>
-                                <li><strong><?php esc_html_e('WordPress Version:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('WordPress Version:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['wp_version']); ?></span></li>
-                                <li><strong><?php esc_html_e('Memory Limit:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Memory Limit:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['memory_limit']); ?></span></li>
-                                <li><strong><?php esc_html_e('Memory Usage:', 'wcw-pro'); ?></strong>
+                                <li><strong><?php esc_html_e('Memory Usage:', 'floating-wa-chat-pro-widget'); ?></strong>
                                     <span><?php echo esc_html($info['memory_usage']); ?></span></li>
                             </ul>
                         </div>
@@ -292,7 +292,7 @@ class WCW_Pro_Admin
             'nonce' => wp_create_nonce('wcw_pro_trial_nonce'),
             'settings' => [
                 'button_style' => $options['button_style'] ?? 'icon_only',
-                'button_text' => $options['button_text'] ?? esc_html__('Need Help!', 'wcw-pro'),
+                'button_text' => $options['button_text'] ?? esc_html__('Need Help!', 'floating-wa-chat-pro-widget'),
             ],
         ]);
     }

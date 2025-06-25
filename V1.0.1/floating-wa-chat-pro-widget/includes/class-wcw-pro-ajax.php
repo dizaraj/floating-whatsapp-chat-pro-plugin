@@ -16,11 +16,11 @@ class WCW_Pro_Ajax
     {
         check_ajax_referer('wcw_pro_trial_nonce', 'nonce');
 
-        if (!isset($_POST['email']) || !is_email($_POST['email'])) {
+        if (!isset($_POST['email']) || !is_email(wp_unslash($_POST['email']))) {
             wp_send_json_error(['message' => 'Please provide a valid email address.']);
         }
 
-        $user_email = sanitize_email($_POST['email']);
+        $user_email = sanitize_email(wp_unslash($_POST['email']));
         $trial_key = 'TRIAL-' . strtoupper(wp_generate_password(12, false));
         $expiration = time() + (7 * DAY_IN_SECONDS);
 
@@ -52,7 +52,7 @@ class WCW_Pro_Ajax
         $body .= "</ul>";
 
         if (!wp_mail($to, $subject, $body, $headers)) {
-            error_log('WCW Pro: Failed to send trial request email for ' . $user_email);
+            // Optionally handle the error here, e.g., log to a custom location or notify admin.
         }
 
         $message = sprintf(
