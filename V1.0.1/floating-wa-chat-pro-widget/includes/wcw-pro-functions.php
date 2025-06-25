@@ -34,9 +34,10 @@ function wcw_pro_get_visitor_ip()
 {
     $ip = '';
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ip = sanitize_text_field(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0]);
+        $forwarded_for = sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR']));
+        $ip = sanitize_text_field(explode(',', $forwarded_for)[0]);
     } elseif (!empty($_SERVER['REMOTE_ADDR'])) {
-        $ip = sanitize_text_field($_SERVER['REMOTE_ADDR']);
+        $ip = sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
     }
     return $ip;
 }
@@ -83,7 +84,7 @@ function wcw_pro_get_essential_info()
     $visitor_data = wcw_pro_get_visitor_public_ip_and_location();
     return [
         'domain' => home_url(),
-        'server_ip' => $_SERVER['SERVER_ADDR'] ?? 'N/A',
+        'server_ip' => isset($_SERVER['SERVER_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['SERVER_ADDR'])) : 'N/A',
         'your_public_ip' => $visitor_data['ip'],
         'php_version' => PHP_VERSION,
         'wp_version' => $wp_version,
