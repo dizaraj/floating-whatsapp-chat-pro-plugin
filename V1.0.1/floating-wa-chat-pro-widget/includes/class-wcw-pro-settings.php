@@ -110,9 +110,11 @@ class WCW_Pro_Settings
         $new_input['button_style'] = isset($input['button_style']) ? sanitize_text_field($input['button_style']) : 'icon_only';
         $new_input['button_text'] = isset($input['button_text']) ? sanitize_text_field($input['button_text']) : esc_html__('Need Help!', 'floating-wa-chat-pro-widget');
 
+        // --- License Key Verification Logic ---
         if (isset($input['api_key'])) {
             $submitted_key = sanitize_text_field($input['api_key']);
 
+            // If the key is masked, use the one from the database. Otherwise, use the submitted one.
             if (strpos($submitted_key, '✱') !== false) {
                 $api_key = $options['api_key'] ?? '';
             } else {
@@ -121,86 +123,44 @@ class WCW_Pro_Settings
 
             $new_input['api_key'] = $api_key;
 
+            // Only perform verification if the key is not empty and has been changed.
             if (!empty($api_key) && ($api_key !== ($options['api_key'] ?? '') || strpos($submitted_key, '✱') === false)) {
-                if ($api_key === 'PRO-UNLOCK-2025') {
-                    $new_input['api_key_status'] = 'valid';
-                    $new_input['api_key_expires'] = 0;
-                    add_settings_error('wcw_pro_settings', 'api_key_valid', 'Pro features have been activated using a local key!', 'updated');
-                } else if (strpos($api_key, 'TRIAL-') === 0) {
-                    $trials = get_option('wcw_pro_trials', []);
-                    if (isset($trials[$api_key])) {
-                        $expiration = $trials[$api_key]['expires'];
-                        $new_input['api_key_expires'] = $expiration;
-                        if (time() > $expiration) {
-                            $new_input['api_key_status'] = 'expired';
-                            add_settings_error('wcw_pro_settings', 'api_key_expired', 'Your trial key has expired.', 'error');
-                        } else {
-                            $new_input['api_key_status'] = 'valid_trial';
-                            add_settings_error('wcw_pro_settings', 'api_key_trial_valid', 'Your 7-day trial key is active!', 'updated');
-                        }
-                    } else {
-                        $new_input['api_key_status'] = 'invalid';
-                        add_settings_error('wcw_pro_settings', 'api_key_invalid', 'The trial key you entered is not valid or does not exist.', 'error');
-                    }
+                
+                // --- UPDATED: Remote Verification with New API ---
+                $domain = home_url();
+                // Construct the URL for the new /verify endpoint
+                $verify_url = add_query_arg([
+                    'key' => urlencode($api_key),
+                    'domain' => urlencode($domain),
+                ], WCW_PRO_LICENSE_SERVER_URL . '/verify'); // Ensure WCW_PRO_LICENSE_SERVER_URL is defined correctly without /api
+
+                $response = wp_safe_remote_get($verify_url, [
+                    'timeout' => 20,
+                    'headers' => ['Accept' => 'application/json'],
+                ]);
+
+                if (is_wp_error($response)) {
+                    $new_input['api_key_status'] = 'invalid';
+                    add_settings_error('wcw_pro_settings', 'api_key_connection_error', 'Could not connect to the license server. Error: ' . $response->get_error_message(), 'error');
                 } else {
-                    $domain = home_url();
-                    $verify_url = add_query_arg([
-                        'action' => 'verify',
-                        'key' => urlencode($api_key),
-                        'domain' => urlencode($domain),
-                    ], WCW_PRO_LICENSE_SERVER_URL);
+                    $response_code = wp_remote_retrieve_response_code($response);
+                    $body = wp_remote_retrieve_body($response);
+                    $data = json_decode($body, true);
 
-                    $response = wp_safe_remote_get($verify_url, [
-                        'timeout' => 20,
-                        'headers' => ['Accept' => 'application/json'],
-                    ]);
-
-                    if (is_wp_error($response)) {
-                        $new_input['api_key_status'] = 'invalid';
-                        $new_input['api_key_expires'] = 0;
-                        add_settings_error('wcw_pro_settings', 'api_key_connection_error', 'Could not connect to the license server. Your web hosting might be blocking outbound connections. Error: ' . $response->get_error_message(), 'error');
+                    if ($response_code === 200 && isset($data['verified']) && $data['verified'] === true) {
+                        // Success: The license is valid for the domain.
+                        $new_input['api_key_status'] = 'valid';
+                        add_settings_error('wcw_pro_settings', 'api_key_valid', 'Success! Your Pro license has been activated.', 'updated');
                     } else {
-                        $response_code = wp_remote_retrieve_response_code($response);
-                        $body = wp_remote_retrieve_body($response);
-
-                        if ($response_code !== 200) {
-                            $new_input['api_key_status'] = 'invalid';
-                            $new_input['api_key_expires'] = 0;
-                            add_settings_error('wcw_pro_settings', 'api_key_server_error', 'The license server responded with an error (Code: ' . esc_html($response_code) . '). Please try again later.', 'error');
-                        } else {
-                            $data = json_decode($body, true);
-
-                            if (json_last_error() !== JSON_ERROR_NONE) {
-                                $json_text = strip_tags($body);
-                                if (!empty($json_text)) {
-                                    $data = json_decode(trim($json_text), true);
-                                }
-                            }
-
-                            if (json_last_error() === JSON_ERROR_NONE && isset($data['status'])) {
-                                $new_input['api_key_status'] = sanitize_text_field($data['status']);
-                                $new_input['api_key_expires'] = isset($data['expires_at']) ? absint($data['expires_at']) : 0;
-
-                                if ($new_input['api_key_status'] === 'valid') {
-                                    add_settings_error('wcw_pro_settings', 'api_key_valid', 'Success! Your Pro license has been activated.', 'updated');
-                                } elseif ($new_input['api_key_status'] === 'valid_trial') {
-                                    add_settings_error('wcw_pro_settings', 'api_key_trial_valid', 'Success! Your trial key is active!', 'updated');
-                                } elseif ($new_input['api_key_status'] === 'expired') {
-                                    add_settings_error('wcw_pro_settings', 'api_key_expired', 'Your license key has expired.', 'error');
-                                } else {
-                                    $server_message = isset($data['message']) ? ' Server says: ' . sanitize_text_field($data['message']) : '';
-                                    add_settings_error('wcw_pro_settings', 'api_key_invalid', 'The license key is not valid.' . $server_message, 'error');
-                                }
-                            } else {
-                                $new_input['api_key_status'] = 'invalid';
-                                $new_input['api_key_expires'] = 0;
-                                add_settings_error('wcw_pro_settings', 'api_key_json_error', 'Received an invalid response from the license server. Could not parse JSON. Response body: ' . esc_html(substr($body, 0, 200)), 'error');
-                            }
-                        }
+                        // Failure: The license is invalid or another error occurred.
+                        $new_input['api_key_status'] = 'invalid';
+                        $server_message = isset($data['message']) ? sanitize_text_field($data['message']) : 'Please check your key and domain.';
+                        add_settings_error('wcw_pro_settings', 'api_key_invalid', 'License verification failed. ' . $server_message, 'error');
                     }
                 }
             }
         } else {
+            // If no API key was submitted, retain the old one.
             $new_input['api_key'] = $options['api_key'] ?? '';
         }
 
