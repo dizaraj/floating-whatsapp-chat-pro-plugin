@@ -433,7 +433,7 @@ class WCW_Pro_Settings
 
         echo '<div class="wcw-pro-license-input-wrapper">';
         echo "<input type='text' id='api_key' name='wcw_pro_settings[api_key]' value='" . esc_attr($display_value) . "' class='regular-text' autocomplete='off'>";
-        echo '<a href="https://whatsapp-pro-chat.web.app/" target="_blank" class="button wcw-pro-get-license-btn">' . esc_html__('Get Pro License', 'floating-wa-chat-pro-widget') . '</a>';
+        echo '<a href="https://whatsapp-chat-pro.obvoy.com/" target="_blank" class="button wcw-pro-get-license-btn">' . esc_html__('Get Pro License', 'floating-wa-chat-pro-widget') . '</a>';
         echo '</div>';
         echo "<p class='description'>Enter your License key to unlock Pro features.</p>";
     }

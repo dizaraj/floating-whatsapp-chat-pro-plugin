@@ -17,8 +17,8 @@ class WCW_Pro_Admin
     public function add_admin_menu()
     {
         add_menu_page(
-            esc_html__('WhatsApp Chat Settings', 'floating-wa-chat-pro-widget'),
-            esc_html__('WhatsApp Chat', 'floating-wa-chat-pro-widget'),
+            esc_html__('WA Chat Pro Settings', 'floating-wa-chat-pro-widget'),
+            esc_html__('WA Chat Pro', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro',
             array($this, 'settings_page_html'),
@@ -28,7 +28,7 @@ class WCW_Pro_Admin
 
         add_submenu_page(
             'wcw-pro',
-            esc_html__('WhatsApp Chat Settings', 'floating-wa-chat-pro-widget'),
+            esc_html__('Floating WA Chat Pro Settings', 'floating-wa-chat-pro-widget'),
             esc_html__('Settings', 'floating-wa-chat-pro-widget'),
             'manage_options',
             'wcw-pro',

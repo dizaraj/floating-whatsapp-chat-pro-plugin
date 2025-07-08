@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 define('WCW_PRO_VERSION', '1.0.1');
 define('WCW_PRO_PATH', plugin_dir_path(__FILE__));
 define('WCW_PRO_URL', plugin_dir_url(__FILE__));
-define('WCW_PRO_LICENSE_SERVER_URL', 'https://wacp-server.netlify.app/api/');
+define('WCW_PRO_LICENSE_SERVER_URL', 'https://whatsapp-chat-pro.obvoy.com/api/');
 
 // Include the autoloader or individual files
 require_once WCW_PRO_PATH . 'includes/wcw-pro-functions.php';
