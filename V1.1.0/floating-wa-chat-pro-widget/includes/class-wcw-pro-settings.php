@@ -125,8 +125,32 @@ class WCW_Pro_Settings
 
             // Only perform verification if the key is not empty and has been changed.
             if (!empty($api_key) && ($api_key !== ($options['api_key'] ?? '') || strpos($submitted_key, '✱') === false)) {
-                
-                // --- UPDATED: Remote Verification with New API ---
+                // Local bypass key for development/testing
+            if ( $api_key === 'PRO-UNLOCK-2025' ) {
+                $new_input['api_key_status'] = 'valid';
+                $new_input['api_key_expires'] = 0; // 0 for never expires
+                add_settings_error('wcw_pro_settings', 'api_key_valid', 'Pro features have been activated using a local key!', 'updated');
+            } 
+            // Local trial key logic
+            else if ( strpos($api_key, 'TRIAL-') === 0 ) {
+                $trials = get_option('wcw_pro_trials', []);
+                if (isset($trials[$api_key])) {
+                    $expiration = $trials[$api_key]['expires'];
+                    $new_input['api_key_expires'] = $expiration;
+                    if (time() > $expiration) {
+                        $new_input['api_key_status'] = 'expired';
+                        add_settings_error('wcw_pro_settings', 'api_key_expired', 'Your trial key has expired.', 'error');
+                    } else {
+                        $new_input['api_key_status'] = 'valid_trial';
+                        add_settings_error('wcw_pro_settings', 'api_key_trial_valid', 'Your 7-day trial key is active!', 'updated');
+                    }
+                } else {
+                    $new_input['api_key_status'] = 'invalid';
+                    add_settings_error('wcw_pro_settings', 'api_key_invalid', 'The trial key you entered is not valid or does not exist.', 'error');
+                }
+            } 
+            // Remote verification for standard PRO keys
+            else {
                 $domain = home_url();
                 // Construct the URL for the new /verify endpoint
                 $verify_url = add_query_arg([
@@ -158,6 +182,7 @@ class WCW_Pro_Settings
                         add_settings_error('wcw_pro_settings', 'api_key_invalid', 'License verification failed. ' . $server_message, 'error');
                     }
                 }
+            }
             }
         } else {
             // If no API key was submitted, retain the old one.

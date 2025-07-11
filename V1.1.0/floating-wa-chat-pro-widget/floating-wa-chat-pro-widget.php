@@ -3,7 +3,7 @@
 Plugin Name: Floating WA Chat Pro Widget
 Plugin URI: https://dizaraj.github.io/floating-whatsapp-chat-pro-plugin
 Description: Add a customizable floating WhatsApp chat widget to your WordPress site. Engage visitors, manage multiple agents, and provide instant support to boost sales.
-Version: 1.0.1
+Version: 1.1.0
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Dizaraj Dey
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define Constants
-define('WCW_PRO_VERSION', '1.0.1');
+define('WCW_PRO_VERSION', '1.1.0');
 define('WCW_PRO_PATH', plugin_dir_path(__FILE__));
 define('WCW_PRO_URL', plugin_dir_url(__FILE__));
 define('WCW_PRO_LICENSE_SERVER_URL', 'https://whatsapp-chat-pro.obvoy.com/api/');

@@ -33,7 +33,7 @@ class WCW_Pro_Ajax
         $request_count = (int) get_transient($request_count_transient);
 
         // 1. Limit trial key requests to 3 per domain
-        if ($request_count >= 10) {
+        if ($request_count >= 3) {
             wp_send_json_error(['message' => 'You have reached the maximum number of trial requests for this domain.']);
             return;
         }

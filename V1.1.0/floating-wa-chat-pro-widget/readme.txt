@@ -5,7 +5,7 @@ Tags: floating chat, whatsapp chat, click to chat, customer support, contact us
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 Plugin URI: https://github.com/dizaraj/floating-whatsapp-chat-pro-plugin
@@ -17,8 +17,6 @@ Plugin URI: https://github.com/dizaraj/floating-whatsapp-chat-pro-plugin
 <strong>The Floating WA Chat Pro Widget plugin allows you to easily add a WA chat button to your website. This provides a direct line of communication with your visitors, allowing you to offer support, answer questions, and engage with customers in real-time.</strong>
 
 With a user-friendly interface, you can customize the widget to match your brand's look and feel. Add and manage multiple support agents, each with their own name, title, and pre-filled message.
-
-[youtube  https://www.youtube.com/watch?v=i6t05AeuyWg]
 
 **Key Features:**
 
@@ -89,5 +87,5 @@ Yes, the chat widget is fully responsive and works great on all devices.
 
 == Upgrade Notice ==
 
-= 1.0.1 =
+= 1.1.0 =
 This update includes a major code refactor for improved stability and prepares the plugin for its debut on WordPress.org. No functionality has been removed.
